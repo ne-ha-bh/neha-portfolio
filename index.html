@@ -4,6 +4,436 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Neha Bharti | Senior Software Developer</title>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet" />
+  <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+  <style>
+    :root {
+      --primary-color: #2563eb;
+      --primary-dark: #1d4ed8;
+      --secondary-color: #1f2937;
+      --accent-color: #3b82f6;
+      --text-primary: #111827;
+      --text-secondary: #6b7280;
+      --bg-light: #f8fafc;
+      --bg-white: #ffffff;
+      --border-color: #e5e7eb;
+      --shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+      --shadow-lg: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
+    }
+
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: 'Inter', sans-serif;
+      background: linear-gradient(135deg, var(--bg-light) 0%, #ffffff 100%);
+      color: var(--text-primary);
+      line-height: 1.6;
+      scroll-behavior: smooth;
+    }
+
+    /* Header Styles */
+    header {
+      background: linear-gradient(135deg, var(--secondary-color) 0%, #374151 100%);
+      color: white;
+      padding: 4rem 2rem;
+      text-align: center;
+      position: relative;
+      overflow: hidden;
+    }
+
+    header::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><defs><pattern id="grid" width="10" height="10" patternUnits="userSpaceOnUse"><path d="M 10 0 L 0 0 0 10" fill="none" stroke="rgba(255,255,255,0.03)" stroke-width="1"/></pattern></defs><rect width="100" height="100" fill="url(%23grid)"/></svg>');
+      opacity: 0.5;
+    }
+
+    header .content {
+      position: relative;
+      z-index: 1;
+    }
+
+    header h1 {
+      font-size: 3rem;
+      font-weight: 700;
+      margin-bottom: 0.5rem;
+      background: linear-gradient(45deg, #ffffff, #93c5fd);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+    }
+
+    header .subtitle {
+      font-size: 1.25rem;
+      font-weight: 500;
+      margin-bottom: 1rem;
+      color: #e5e7eb;
+    }
+
+    header .contact-info {
+      display: flex;
+      justify-content: center;
+      gap: 2rem;
+      flex-wrap: wrap;
+      margin-top: 1.5rem;
+    }
+
+    header .contact-item {
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+      color: #93c5fd;
+      text-decoration: none;
+      transition: color 0.3s ease;
+    }
+
+    header .contact-item:hover {
+      color: #dbeafe;
+    }
+
+    /* Container */
+    .container {
+      max-width: 900px;
+      margin: 0 auto;
+      padding: 0 2rem;
+    }
+
+    /* Section Styles */
+    section {
+      background: var(--bg-white);
+      margin: 2rem 0;
+      padding: 2.5rem;
+      border-radius: 16px;
+      box-shadow: var(--shadow);
+      border: 1px solid var(--border-color);
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
+    }
+
+    section:hover {
+      transform: translateY(-2px);
+      box-shadow: var(--shadow-lg);
+    }
+
+    h2 {
+      color: var(--text-primary);
+      font-size: 1.75rem;
+      font-weight: 600;
+      margin-bottom: 1.5rem;
+      position: relative;
+      padding-bottom: 0.75rem;
+    }
+
+    h2::after {
+      content: '';
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      width: 60px;
+      height: 3px;
+      background: linear-gradient(90deg, var(--primary-color), var(--accent-color));
+      border-radius: 2px;
+    }
+
+    /* Skills Section */
+    .skills-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+      gap: 1.5rem;
+    }
+
+    .skill-category {
+      background: var(--bg-light);
+      padding: 1.5rem;
+      border-radius: 12px;
+      border-left: 4px solid var(--primary-color);
+    }
+
+    .skill-category h3 {
+      color: var(--text-primary);
+      font-size: 1.1rem;
+      font-weight: 600;
+      margin-bottom: 0.75rem;
+    }
+
+    .skill-tags {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.5rem;
+    }
+
+    .skill-tag {
+      background: var(--primary-color);
+      color: white;
+      padding: 0.25rem 0.75rem;
+      border-radius: 20px;
+      font-size: 0.875rem;
+      font-weight: 500;
+    }
+
+    /* Experience Section */
+    .experience-timeline {
+      position: relative;
+      padding-left: 2rem;
+    }
+
+    .experience-timeline::before {
+      content: '';
+      position: absolute;
+      left: 0;
+      top: 0;
+      bottom: 0;
+      width: 2px;
+      background: linear-gradient(to bottom, var(--primary-color), var(--accent-color));
+    }
+
+    .experience-item {
+      position: relative;
+      margin-bottom: 2.5rem;
+      background: var(--bg-light);
+      padding: 1.5rem;
+      border-radius: 12px;
+      margin-left: 1rem;
+    }
+
+    .experience-item::before {
+      content: '';
+      position: absolute;
+      left: -2rem;
+      top: 1.5rem;
+      width: 12px;
+      height: 12px;
+      background: var(--primary-color);
+      border-radius: 50%;
+      border: 3px solid white;
+      box-shadow: 0 0 0 3px var(--primary-color);
+    }
+
+    .experience-header {
+      margin-bottom: 1rem;
+    }
+
+    .company-name {
+      font-size: 1.25rem;
+      font-weight: 600;
+      color: var(--text-primary);
+    }
+
+    .job-title {
+      font-size: 1rem;
+      font-weight: 500;
+      color: var(--primary-color);
+      margin: 0.25rem 0;
+    }
+
+    .duration {
+      font-size: 0.875rem;
+      color: var(--text-secondary);
+      font-weight: 500;
+    }
+
+    .experience-item ul {
+      list-style: none;
+      padding-left: 0;
+    }
+
+    .experience-item li {
+      position: relative;
+      padding-left: 1.5rem;
+      margin-bottom: 0.75rem;
+      color: var(--text-primary);
+    }
+
+    .experience-item li::before {
+      content: '▸';
+      position: absolute;
+      left: 0;
+      color: var(--primary-color);
+      font-weight: bold;
+    }
+
+    .highlight {
+      background: linear-gradient(120deg, rgba(37, 99, 235, 0.1) 0%, rgba(59, 130, 246, 0.1) 100%);
+      padding: 0.25rem 0.5rem;
+      border-radius: 4px;
+      font-weight: 500;
+    }
+
+    /* About Section */
+    .about p {
+      font-size: 1.1rem;
+      line-height: 1.8;
+      color: var(--text-primary);
+    }
+
+    /* Education Section */
+    .education-item {
+      background: var(--bg-light);
+      padding: 1.5rem;
+      border-radius: 12px;
+      border-left: 4px solid var(--primary-color);
+    }
+
+    .education-item h3 {
+      color: var(--text-primary);
+      font-size: 1.1rem;
+      font-weight: 600;
+      margin-bottom: 0.5rem;
+    }
+
+    .education-details {
+      color: var(--text-secondary);
+      font-weight: 500;
+    }
+
+    /* Contact Section */
+    .contact-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+      gap: 1.5rem;
+    }
+
+    .contact-card {
+      background: var(--bg-light);
+      padding: 1.5rem;
+      border-radius: 12px;
+      text-align: center;
+      transition: transform 0.3s ease;
+    }
+
+    .contact-card:hover {
+      transform: translateY(-4px);
+    }
+
+    .contact-card a {
+      color: var(--primary-color);
+      text-decoration: none;
+      font-weight: 500;
+      transition: color 0.3s ease;
+    }
+
+    .contact-card a:hover {
+      color: var(--primary-dark);
+    }
+
+    /* Footer */
+    footer {
+      text-align: center;
+      padding: 2rem;
+      background: var(--secondary-color);
+      color: white;
+      margin-top: 3rem;
+    }
+
+    /* Responsive Design */
+    @media (max-width: 768px) {
+      header h1 {
+        font-size: 2rem;
+      }
+      
+      header .contact-info {
+        flex-direction: column;
+        gap: 1rem;
+      }
+      
+      section {
+        margin: 1rem 0;
+        padding: 1.5rem;
+      }
+      
+      .container {
+        padding: 0 1rem;
+      }
+      
+      .skills-grid {
+        grid-template-columns: 1fr;
+      }
+      
+      .experience-timeline {
+        padding-left: 1rem;
+      }
+      
+      .experience-item {
+        margin-left: 0.5rem;
+      }
+    }
+
+    /* Animation Enhancements */
+    .fade-in {
+      opacity: 0;
+      transform: translateY(20px);
+      transition: opacity 0.8s ease, transform 0.8s ease;
+    }
+
+    .fade-in.visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  </style>
+</head>
+<body>
+  <header data-aos="fade-down">
+    <div class="content">
+      <h1>Neha Bharti</h1>
+      <p class="subtitle">Senior Software Developer</p>
+      <p style="font-size: 1.1rem; margin-bottom: 1rem;">4.5+ Years of Relevant Experience</p>
+      <div class="contact-info">
+        <a href="mailto:nehabharti.1094@gmail.com" class="contact-item">
+          <span>📧</span>
+          <span>nehabharti.1094@gmail.com</span>
+        </a>
+        <a href="tel:+919694656661" class="contact-item">
+          <span>📞</span>
+          <span>+91 96946 56661</span>
+        </a>
+      </div>
+    </div>
+  </header>
+
+  <div class="container">
+    <section class="about" data-aos="fade-up">
+      <h2>About Me</h2>
+      <p>Experienced Senior Software Developer with 4.5+ years of expertise in building scalable backend systems using Python, Django, and microservices architecture. Proven track record in REST API development, database optimization, AI integration, and leading technical transformations from monolithic to microservices architectures.</p>
+    </section>
+
+    <section class="skills" data-aos="fade-up">
+      <h2>Technical Skills</h2>
+      <div class="skills-grid">
+        <div class="skill-category">
+          <h3>Languages</h3>
+          <div class="skill-tags">
+            <span class="skill-tag">Python (Proficient)</span>
+            <span class="skill-tag">HTML5</span>
+            <span class="skill-tag">CSS3</span>
+          </div>
+        </div>
+        <div class="skill-category">
+          <h3>Frameworks & Architecture</h3>
+          <div class="skill-tags">
+            <span class="skill-tag">Django</span>
+            <span class="skill-tag">REST APIs</span>
+            <span class="skill-tag">Microservices</span>
+            <span class="skill-tag">Web Services</span>
+          </div>
+        </div>
+        <div class="skill-category">
+          <h3>Tools & Technologies</h3>
+          <div class="skill-tags">
+            <span class="skill-tag">PyCharm</span>
+            <span class="skill-tag">Visual Studio</span>
+            <span class="skill-tag">Jupyter Notebooks</span><!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Neha Bharti | Senior Software Developer</title>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;700&display=swap" rel="stylesheet" />
   <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
   <style>
@@ -59,65 +489,111 @@
   </section>
 
   <section class="skills" data-aos="fade-up">
-    <h2>Skills</h2>
-    <ul>
-      <li>Languages: Python (Proficient), HTML5, CSS3</li>
-      <li>Frameworks: Django, Microservices</li>
-      <li>Tools: PyCharm, Jupyter, Kubernetes, VS Code</li>
-      <li>Capabilities: REST APIs, Data Analysis, Web Scraping, Crawlers</li>
-    </ul>
-  </section>
 
-  <section class="experience" data-aos="fade-up">
-    <h2>Experience</h2>
+            <span class="skill-tag">Kubernetes</span>
+            <span class="skill-tag">VS Code</span>
+          </div>
+        </div>
+        <div class="skill-category">
+          <h3>Specialized Capabilities</h3>
+          <div class="skill-tags">
+            <span class="skill-tag">Data Analysis</span>
+            <span class="skill-tag">Web Scraping</span>
+            <span class="skill-tag">Web Crawlers</span>
+            <span class="skill-tag">GPT Integration</span>
+            <span class="skill-tag">Query Optimization</span>
+          </div>
+        </div>
+      </div>
+    </section>
 
-    <div class="experience-item">
-      <strong>Harbinger Group</strong> – Senior Software Developer<br/>
-      <em>Nov 2022 – Present | Remote / Gurugram</em>
-      <ul>
-        <li>Built REST APIs for event-driven balance updates</li>
-        <li>Led ORM-to-raw SQL migration in a microservices setup</li>
-        <li>Integrated GPT APIs for multilingual content transformation</li>
-      </ul>
-    </div>
+    <section class="experience" data-aos="fade-up">
+      <h2>Professional Experience</h2>
+      <div class="experience-timeline">
+        
+        <div class="experience-item">
+          <div class="experience-header">
+            <div class="company-name">Harbinger Group</div>
+            <div class="job-title">Senior Software Developer</div>
+            <div class="duration">November 2022 – Present | Remote / Gurugram</div>
+          </div>
+          <strong>Current Project:</strong>
+          <ul>
+            <li>Built REST APIs to serve refreshed balance for consumers post specific events</li>
+            <li><span class="highlight">Led the project to transform ORM queries from old MVC-Django system to raw-SQL queries in new microservices architecture</span></li>
+            <li>Responsible for query optimization for faster run-time operations of microservices</li>
+          </ul>
+          <br>
+          <strong>Past Projects:</strong>
+          <ul>
+            <li>Integration of Learning Management interface with backend recommendation engine via microservices to host user segment-specific courses based on past preferences</li>
+            <li><span class="highlight">Built and integrated APIs to sequentially pass and transform content using GPT into multiple languages, then transform multi-lingual output into custom formats and templates</span></li>
+            <li>Designed prompts for GPT based on client-approved templates</li>
+          </ul>
+        </div>
 
-    <div class="experience-item">
-      <strong>Agilite Global Solutions</strong> – Software Developer<br/>
-      <em>June 2021 – Oct 2022 | Remote / Gurugram</em>
-      <ul>
-        <li>Developed custom web crawlers and data pipelines (Scala)</li>
-        <li>Built internal dashboards and tax-filing portal</li>
-      </ul>
-    </div>
+        <div class="experience-item">
+          <div class="experience-header">
+            <div class="company-name">Agilite Global Solutions</div>
+            <div class="job-title">Software Developer</div>
+            <div class="duration">June 2021 – October 2022 | Remote / Gurugram</div>
+          </div>
+          <ul>
+            <li>Customized and implemented web-crawlers to source data from leading pharmaceutical firms' websites</li>
+            <li>Built data pipelines to transform (using Scala) & store transformed data within data warehouse</li>
+            <li>Built custom queries & dashboards within existing platform for clients' ad-hoc data requests</li>
+            <li>Built and delivered internal tax-filing portal using regex matches</li>
+          </ul>
+        </div>
 
-    <div class="experience-item">
-      <strong>Mergetree Technologies</strong> – Software Developer<br/>
-      <em>Nov 2019 – June 2021 | Remote / Gurugram</em>
-      <ul>
-        <li>Built REST APIs using Django</li>
-        <li>Integrated APIs with frontend UIs</li>
-      </ul>
-    </div>
+        <div class="experience-item">
+          <div class="experience-header">
+            <div class="company-name">Mergetree Technologies</div>
+            <div class="job-title">Software Developer</div>
+            <div class="duration">November 2019 – June 2021 | Remote / Gurugram</div>
+          </div>
+          <ul>
+            <li>Built new features and enhancements for client's custom application</li>
+            <li>Developed REST APIs using Python Django framework and integrated with UI interfaces</li>
+          </ul>
+        </div>
 
-    <div class="experience-item">
-      <strong>Cognizant</strong> – Senior Process Executive<br/>
-      <em>Dec 2017 – Oct 2019 | Hyderabad</em>
-      <ul>
-        <li>Worked on Facebook's data annotation project for media content</li>
-      </ul>
-    </div>
-  </section>
+        <div class="experience-item">
+          <div class="experience-header">
+            <div class="company-name">Cognizant</div>
+            <div class="job-title">Senior Process Executive</div>
+            <div class="duration">December 2017 – October 2019 | Hyderabad</div>
+          </div>
+          <ul>
+            <li>Worked with Facebook's SRT tool for data annotation project to improve labeling of edge cases against graphical and video content uploaded to Facebook</li>
+          </ul>
+        </div>
 
-  <section class="education" data-aos="fade-up">
-    <h2>Education</h2>
-    <p>B.Tech in Computer Science, Rajasthan Technical University (2013–2017), Jaipur</p>
-  </section>
+      </div>
+    </section>
 
-  <section class="contact" data-aos="fade-up">
-    <h2>Contact</h2>
-    <p>Email: <a href="mailto:nehabharti.1094@gmail.com">nehabharti.1094@gmail.com</a></p>
-    <p>Phone: +91 96946 56661</p>
-  </section>
+    <section class="education" data-aos="fade-up">
+      <h2>Education</h2>
+      <div class="education-item">
+        <h3>Bachelor of Technology in Computer Science Engineering</h3>
+        <div class="education-details">Rajasthan Technical University | 2013 - 2017 | Jaipur</div>
+      </div>
+    </section>
+
+    <section class="contact" data-aos="fade-up">
+      <h2>Get In Touch</h2>
+      <div class="contact-grid">
+        <div class="contact-card">
+          <h3>Email</h3>
+          <p><a href="mailto:nehabharti.1094@gmail.com">nehabharti.1094@gmail.com</a></p>
+        </div>
+        <div class="contact-card">
+          <h3>Phone</h3>
+          <p><a href="tel:+919694656661">+91 96946 56661</a></p>
+        </div>
+      </div>
+    </section>
+  </div>
 
   <footer data-aos="fade-in">
     <p>&copy; 2025 Neha Bharti. All rights reserved.</p>
@@ -129,6 +605,25 @@
       duration: 800,
       easing: 'ease-in-out',
       once: true,
+      offset: 100
+    });
+
+    // Enhanced scroll animations
+    const observerOptions = {
+      threshold: 0.1,
+      rootMargin: '0px 0px -50px 0px'
+    };
+
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('visible');
+        }
+      });
+    }, observerOptions);
+
+    document.querySelectorAll('.fade-in').forEach(el => {
+      observer.observe(el);
     });
   </script>
 </body>
